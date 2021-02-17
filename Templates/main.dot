@@ -27,7 +27,7 @@
 {{? data.api.components && data.api.components.schemas }}
 {{= data.tags.section }}
 
-# Schemas
+# Definitions
 
 {{ for (var s in data.components.schemas) { }}
 {{ var origSchema = data.components.schemas[s]; }}
