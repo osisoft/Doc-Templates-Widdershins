@@ -13,9 +13,9 @@
 
 ### Response Headers
 
-|Status|Header|Type|Format|Description|
-|---|---|---|---|---|
-{{~ data.responseHeaders :h}}|{{=h.status}}|{{=h.header}}|{{=h.type}}|{{=h.format||''}}|{{=h.description||'none'}}|
+|Status|Header|Type|Description|
+|---|---|---|---|
+{{~ data.responseHeaders :h}}|{{=h.status}}|{{=h.header}}|{{? h.format}}{{=h.format}}{{??}}{{=h.type}}{{?}}|{{=h.description||'None'}}|
 {{~}}
 
 {{?}}

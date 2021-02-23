@@ -5,6 +5,31 @@
 
 {{= data.tags.section }}
 <h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
+{{ var tag = data.utils.getTag(r); }}
+
+{{ for (var s in data.components.schemas) { }}
+{{? tag.includes(s) || tag == s}}
+
+{{ var origSchema = data.components.schemas[s]; }}
+{{ var enums = []; }}
+{{ var blocks = data.utils.schemaToArray(origSchema,-1,{trim:true,join:true},data); }}
+
+{{~ blocks :block}}
+{{? block.title }}{{= block.title}}{{= '\n\n'}}{{?}}
+
+{{ var filteredProperties = data.utils.getFilteredProperties(block, data); }}
+{{? filteredProperties.length}}
+
+{{? filteredProperties.length}}|Name|Type|Description|
+|---|---|---|{{?}}
+{{~ filteredProperties :p}}|{{=p.displayName}}|{{? p.format}}{{=p.format}}{{??}}{{=p.safeType}}{{?}}|{{=p.description||'None'}}|
+{{~}}
+
+{{?}}
+{{~}}
+
+{{?}}	
+{{ } /* of schemas */ }}
 
 {{? data.resource.description }}{{= data.resource.description}}{{?}}
 
@@ -94,9 +119,7 @@
 {{~}}
 
 {{?}}
-
 {{~}}
-
 
 {{? enums.length > 0 }}
 {{= data.tags.section }}
@@ -115,6 +138,7 @@
 {{= data.tags.endSection }}
 
 {{ } /* of schemas */ }}
-
+{{= data.tags.endSection }}
 {{?}}
+{{= data.tags.endSection }}
 
