@@ -1,10 +1,10 @@
 {{= data.tags.section }}
-
 {{ for (var r in data.resources) { }}
 {{ data.resource = data.resources[r]; }}
 
 {{= data.tags.section }}
 <h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
+{{? data.api.info.description}}{{=data.api.info.description}}{{?}}
 {{ var tag = data.utils.getTag(r); }}
 
 {{ for (var s in data.components.schemas) { }}
@@ -19,14 +19,20 @@
 
 {{ var filteredProperties = data.utils.getFilteredProperties(block, data); }}
 {{? filteredProperties.length}}
-
-{{? filteredProperties.length}}|Name|Type|Description|
+### Properties
+{{? filteredProperties.length}}|Property Name|Data Type|Description|
 |---|---|---|{{?}}
 {{~ filteredProperties :p}}|{{=p.displayName}}|{{? p.format}}{{=p.format}}{{??}}{{=p.safeType}}{{?}}|{{=p.description||'None'}}|
 {{~}}
 
 {{?}}
 {{~}}
+
+{{? origSchema.type === 'object' }}
+```json
+{{=data.utils.safejson(data.utils.getSample(schema,data.options,{quiet:true},data.api),null,2)}}
+```
+{{?}}
 
 {{?}}	
 {{ } /* of schemas */ }}
@@ -113,7 +119,7 @@
 ### Properties
 {{?}}
 
-{{? filteredProperties.length}}|Name|Type|Required|Nullable|Description|
+{{? filteredProperties.length}}|Property Name|Data Type|Required|Nullable|Description|
 |---|---|---|---|---|{{?}}
 {{~ filteredProperties :p}}|{{=p.displayName}}|{{? p.format}}{{=p.format}}{{??}}{{=p.safeType}}{{?}}|{{=p.required}}|{{=p.nullable||'false'}}|{{=p.description||'None'}}|
 {{~}}
