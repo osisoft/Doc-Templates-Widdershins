@@ -49,7 +49,7 @@
 {{ data.security = data.operation['x-authorized-roles']; }}
 {{ data.strictSecurity = data.operation['x-strict-roles']; }}
 {{? data.security && data.security.length || data.strictSecurity && data.strictSecurity.length}}
-### Security
+### Authorization
 {{#def.authentication}}
 {{?}}
 {{= data.tags.endSection }}
