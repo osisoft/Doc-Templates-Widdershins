@@ -1,7 +1,7 @@
 {{ data.responses = data.utils.getResponses(data); }}
 
 {{= data.tags.section }}
-<h3 id="{{=data.operationUniqueSlug}}-responses">Responses</h3>
+### Response
 
 |Status Code|Body Type|Description|
 |---|---|---|
@@ -11,7 +11,7 @@
 {{ data.responseHeaders = data.utils.getResponseHeaders(data); }}
 {{? data.responseHeaders.length }}
 
-### Response Headers
+#### Response Headers
 
 |Status|Header|Type|Description|
 |---|---|---|---|
@@ -29,7 +29,7 @@
 {{? data.responseSchemas }}
 {{ var examples = data.utils.getResponseExamples(data);}}
 {{? examples !== ''}}
-### Example response body
+#### Example response body
 {{= data.utils.getResponseExamples(data) }}
 {{?}}
 {{?}}
