@@ -22,7 +22,7 @@
 ---
 {{?}}
 {{includeLineSeparator = true;}}
-## {{= data.utils.getMethodName(m)}}
+## `{{= data.utils.getMethodName(m)}}`
 {{= data.templates.operation(data, r) }}
 {{ } /* of methods */ }}
 
