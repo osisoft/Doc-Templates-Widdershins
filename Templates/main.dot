@@ -32,14 +32,14 @@
 {{? data.api.components && data.api.components.schemas }}
 {{= data.tags.section }}
 ---
-# Definitions
+## Definitions
 
 {{ for (var s in data.components.schemas) { }}
 {{ var origSchema = data.components.schemas[s]; }}
 {{ var schema = data.api.components.schemas[s]; }}
 
 {{= data.tags.section }}
-## {{=s}}
+### {{=s}}
 {{ /* backwards compatibility */ }}
 <a id="schema{{=s.toLowerCase()}}"></a>
 <a id="schema_{{=s}}"></a>
@@ -79,7 +79,7 @@
 {{? block===blocks[0] }}
 {{= data.tags.section }}
 
-### Properties
+#### Properties
 {{?}}
 
 {{? filteredProperties.length}}|Property Name|Data Type|Required|Nullable|Description|
