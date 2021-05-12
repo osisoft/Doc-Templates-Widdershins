@@ -3,8 +3,8 @@
 {{ data.resource = data.resources[r]; }}
 
 {{= data.tags.section }}
-# {{= r}}
-{{? data.api.info.description}}{{=data.api.info.description}}{{?}}
+# {{= data.api.info.title}}
+{{? data.api.info.description}}{{= data.api.info.description}}{{?}}
 
 {{? data.resource.description }}{{= data.resource.description}}{{?}}
 
