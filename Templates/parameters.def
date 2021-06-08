@@ -3,7 +3,7 @@
 
 {{~ data.parameters :p}}{{? p.name !== 'body'}}{{? p.in !=='header'}}{{? p.required }}`{{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}} {{=p.name}}`
 {{? p.description}}<br/>{{=p.description}}{{?}}<br/><br/>{{?}}{{?}}{{?}}{{~}}
-{{~ data.parameters :p}}{{? p.name !== 'body'}}{{? p.in !=='header'}}{{? !p.required }}`[optional] {{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}} {{=p.name}} {{=p.name}}`
+{{~ data.parameters :p}}{{? p.name !== 'body'}}{{? p.in !=='header'}}{{? !p.required }}`[optional] {{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}} {{=p.name}}`
 {{? p.description}}<br/>{{=p.description}}{{?}}<br/><br/>{{?}}{{?}}{{?}}{{~}}
 
 #### Request Headers
