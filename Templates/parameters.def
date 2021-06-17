@@ -6,13 +6,14 @@
 {{~ data.parameters :p}}{{? p.name !== 'body'}}{{? p.in !=='header'}}{{? !p.required }}`[optional] {{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}} {{=p.name}}`
 {{? p.description}}<br/>{{=p.description}}{{?}}<br/><br/>{{?}}{{?}}{{?}}{{~}}
 
-{{~ data.headerParameters :p}}
+{{? data.headerParameters && data.headerParameters.length }}
 #### Request Headers
 
 |Header|Type|Required|Description|
 |---|---|---|---|
-|{{=p.name}}|{{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}}|{{=p.required }}|{{=p.description}}|
+{{~ data.headerParameters :p}}|{{=p.name}}|{{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}}|{{=p.required }}|{{=p.description}}|
 {{~}}
+{{?}}
 
 {{~ data.parameters :p}}
 
