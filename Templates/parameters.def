@@ -1,5 +1,5 @@
 {{= data.tags.section }}
-#### Parameters
+<h4>Parameters</h4>
 
 {{~ data.parameters :p}}{{? p.name !== 'body'}}{{? p.in !=='header'}}{{? p.required }}`{{? p.originalType}}{{=p.originalType}}{{??}}{{=p.safeType}}{{?}} {{=p.name}}`
 {{? p.description}}<br/>{{=p.description}}{{?}}<br/><br/>{{?}}{{?}}{{?}}{{~}}
@@ -7,7 +7,7 @@
 {{? p.description}}<br/>{{=p.description}}{{?}}<br/><br/>{{?}}{{?}}{{?}}{{~}}
 
 {{? data.headerParameters && data.headerParameters.length }}
-#### Request Headers
+<h4>Request Headers</h4>
 
 |Header|Type|Required|Description|
 |---|---|---|---|
@@ -32,7 +32,7 @@
 {{~}}
 
 {{? data.enums && data.enums.length }}
-#### Enumerated Values
+<h4>Enumerated Values</h4>
 
 |Parameter|Value|
 |---|---|
