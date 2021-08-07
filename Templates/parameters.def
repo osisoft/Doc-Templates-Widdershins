@@ -31,12 +31,4 @@
 
 {{~}}
 
-{{? data.enums && data.enums.length }}
-<h4>Enumerated Values</h4>
-
-|Parameter|Value|
-|---|---|
-{{~ data.enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
-{{~}}
-{{?}}
 {{= data.tags.endSection }}
