@@ -50,21 +50,25 @@
 {{ var blocks = data.utils.schemaToArray(origSchema,-1,{trim:true,join:true},data); }}
 {{ for (var block of blocks) {
      for (var p of block.rows) {
-       if (p.schema && p.schema.enum) {
-		if(p.schema['x-enumNames']){
-			var val = 0;
-			for (var e of p.schema.enum) {
-				enums.push({name:p.schema['x-enumNames'][val],value:e});
-				val++;
-			}
-		}else{
-			for (var e of p.schema.enum) {
-				enums.push({name:p.name,value:e});
-			}
-		}		
-       }
-     }
-   }
+    	if (p.schema && p.schema.enum) {
+			if (p.schema['x-enumNames']){
+				var val = 0;
+				for (var e of p.schema.enum) {
+					if (p.schema['x-enumDescriptions']){
+						enums.push({name:p.schema['x-enumNames'][val],value:e,description:p.schema['x-enumDescriptions'][val]});
+					}else{
+						enums.push({name:p.schema['x-enumNames'][val],value:e});
+					}
+					val++;
+				}
+			}else{
+				for (var e of p.schema.enum) {
+					enums.push({name:p.name,value:e});
+				}
+			}		
+    	}
+    }
+}
 }}
 
 {{~ blocks :block}}
@@ -96,10 +100,17 @@
 
 <h4>Enumerated Values</h4>
 
+{{? enums[0].description}}
+|Property|Value|Description|
+|---|---|---|
+{{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|{{=e.description}}|
+{{~}}
+{{??}}
 |Property|Value|
 |---|---|
 {{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
 {{~}}
+{{?}}
 
 {{= data.tags.endSection }}
 {{?}}
