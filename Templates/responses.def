@@ -27,8 +27,8 @@
 {{~}}
 
 {{? data.responseSchemas }}
-{{ var examples = data.utils.getResponseExamples(data);}}
-{{? examples !== ''}}
+{{ var examples = data.utils.getResponseExamples(data); }}
+{{? examples !== '' && examples.startsWith('> 2')}}
 <h4>Example response body</h4>
 
 {{= data.utils.getResponseExamples(data) }}
