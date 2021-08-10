@@ -37,6 +37,7 @@
 {{ for (var s in data.components.schemas) { }}
 {{ var origSchema = data.components.schemas[s]; }}
 {{ var schema = data.api.components.schemas[s]; }}
+{{ var enumDescriptions = false; }}
 
 {{= data.tags.section }}
 ### {{=s}}
@@ -55,6 +56,7 @@
 				var val = 0;
 				for (var e of p.schema.enum) {
 					if (p.schema['x-enumDescriptions']){
+						enumDescriptions = true;
 						enums.push({name:p.schema['x-enumNames'][val],value:e,description:p.schema['x-enumDescriptions'][val]});
 					}else{
 						enums.push({name:p.schema['x-enumNames'][val],value:e});
@@ -100,7 +102,7 @@
 
 <h4>Enumerated Values</h4>
 
-{{? enums[0].description}}
+{{? enumDescriptions}}
 |Property|Value|Description|
 |---|---|---|
 {{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|{{=e.description}}|
