@@ -5,7 +5,7 @@
 
 |Status Code|Body Type|Description|
 |---|---|---|
-{{~ data.responses :r}}|{{=r.status}}|{{=r.schema}}|{{=r.description || 'None'}}|
+{{~ data.responses :r}}|{{=r.status}}|{{? r.typeOverride}}{{=r.typeOverride}}{{??}}{{=r.schema}}{{?}}|{{=r.description || 'None'}}|
 {{~}}
 
 {{ data.responseHeaders = data.utils.getResponseHeaders(data); }}
