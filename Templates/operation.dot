@@ -18,13 +18,25 @@
 {{= summ }}
 {{?}}
 
-{{ var pathUrl = data.utils.getPathUrlWithParameters(data.method.path, data.parameters); }}
 <h3>Request</h3>
+{{? data.operation["x-paramGroups"]}}
+{{~ data.operation["x-paramGroups"] :g}}
+<h4>{{=g}}</h4>
+{{ var pathUrl = data.utils.getPathUrlWithParameters(data.method.path, data.parameters.filter(p => !p["x-paramGroups"] || (p["x-paramGroups"] && p["x-paramGroups"].includes(g)))); }}
 
 ```text 
 {{= data.methodUpper}} {{=pathUrl}}
 ```
 
+{{~}}
+{{??}}
+{{ var pathUrl = data.utils.getPathUrlWithParameters(data.method.path, data.parameters); }}
+
+```text 
+{{= data.methodUpper}} {{=pathUrl}}
+```
+
+{{?}}
 {{? data.operation.description}}{{= data.operation.description }}{{?}}
 
 {{? data.parameters && data.parameters.length }}
