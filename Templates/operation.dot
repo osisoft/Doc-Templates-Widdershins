@@ -45,7 +45,7 @@
 
 {{? data.operation.requestBody}}
 {{ var bodyParameterExamples = data.utils.getBodyParameterExamples(data); }}
-{{? bodyParameterExamples !== null}}
+{{? bodyParameterExamples !== null && data.bodyParameter.exampleValues.object !== 'undefined' && !Array.isArray(data.bodyParameter.exampleValues.object)}}
 <h4>Request Body</h4>
 
 {{? data.parameters && data.parameters.length }}
@@ -61,6 +61,27 @@
 {{?}}
 {{?}}
 
+{{? data.bodyParameter.exampleValues.object !== 'undefined' && Array.isArray(data.bodyParameter.exampleValues.object)}}
+<h4>Request Body</h4>
+
+{{? data.parameters && data.parameters.length }}
+{{~ data.parameters :p}}{{? p.name == 'body'}}{{=p.shortDesc}}<br/>{{?}}
+{{~}}
+{{?}}
+
+{{~ data.bodyParameter.exampleValues.object :e}}
+{{? e.description}}
+{{= e.description}}
+{{?}}
+
+{{ let temp = JSON.parse(JSON.stringify(data)); }}
+{{ temp.bodyParameter.exampleValues.object = e.value; }}
+{{ var value = data.utils.getBodyParameterExamples(temp); }}
+{{? value !== null}}
+{{= value }}
+{{?}}
+{{~}}
+{{?}}
 
 {{#def.responses}}
 
