@@ -94,4 +94,10 @@
 
 {{#def.authentication}}
 {{?}}
+
+{{? data.operation['x-remarks']}}
+{{ var notes = data.operation['x-remarks']; }}
+{{= notes }}
+{{?}}
+
 {{= data.tags.endSection }}
