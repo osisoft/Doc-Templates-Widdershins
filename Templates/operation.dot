@@ -81,6 +81,9 @@
 {{? value !== null}}
 {{= value }}
 {{?}}
+{{? value == null && bodyParameterExamples !== null}}
+{{= bodyParameterExamples }}
+{{?}}
 {{~}}
 {{?}}
 
