@@ -1,5 +1,6 @@
 {{ data.security = data.operation['x-authorized-roles']; }}
 {{ data.strictSecurity = data.operation['x-strict-roles']; }}
+{{ data.scopeSecurity = data.operation['x-authorized-scopes']; }}
 
 {{? data.security && data.security.length }}
 {{= data.tags.section }}
@@ -8,3 +9,9 @@ Allowed for these roles:
 {{= data.tags.endSection }}
 {{?}}
 
+{{? data.scopeSecurity && data.scopeSecurity.length }}
+{{= data.tags.section }}
+Allowed for these Auth0 scopes: 
+{{= data.utils.getScopeAuthorizationStr(data) }}
+{{= data.tags.endSection }}
+{{?}}
