@@ -81,9 +81,6 @@
 {{? value !== null}}
 {{= value }}
 {{?}}
-{{? value == null && bodyParameterExamples !== null}}
-{{= bodyParameterExamples }}
-{{?}}
 {{~}}
 {{?}}
 
@@ -93,7 +90,8 @@
 
 {{ data.security = data.operation['x-authorized-roles']; }}
 {{ data.strictSecurity = data.operation['x-strict-roles']; }}
-{{? data.security && data.security.length || data.strictSecurity && data.strictSecurity.length}}
+{{ data.scopeSecurity = data.operation['x-authorized-scopes']; }}
+{{? (data.security && data.security.length) || (data.strictSecurity && data.strictSecurity.length) || (data.scopeSecurity && data.scopeSecurity.length)}}
 <h3>Authorization</h3>
 
 {{#def.authentication}}
